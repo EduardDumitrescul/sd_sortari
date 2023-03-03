@@ -2,6 +2,7 @@
 // Created by eduarddumitrescul on 3/3/23.
 //
 
+#include <cmath>
 #include "ArraySorter.h"
 
 
@@ -31,8 +32,22 @@ void ArraySorter::radixSort(std::vector<long long int> &v, const int logBase) {
     }
 }
 
-void ArraySorter::shellSort(std::vector<long long int> &v) {
+void ArraySorter::shellSort(std::vector<long long int> &v, int gap) {
+    for(int i = gap; i < v.size(); i ++) {
+        long long temp = v[i];
+        int j;
+        for(j = i; j >= gap and v[j-gap] > temp; j -= gap) {
+            v[j] = v[j-gap];
+        }
+        v[j] = temp;
+    }
+}
 
+
+void ArraySorter::shellSort(std::vector<long long int> &v) {
+    for(int k = log2(v.size() + 1); k >= 1; k --) {
+        ArraySorter::shellSort(v, (1<<k)-1);
+    }
 }
 
 void ArraySorter::mergeSort(std::vector<long long int> &v, const int left, const int right) {

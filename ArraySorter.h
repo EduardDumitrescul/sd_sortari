@@ -10,6 +10,8 @@
 
 class ArraySorter {
     static void mergeSort(std::vector <long long> &v, int left, int right);
+
+    static void shellSort(std::vector <long long> &v, int gap);
 public:
 
     static void mergeSort(std::vector <long long> &v);
