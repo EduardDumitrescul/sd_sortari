@@ -2,3 +2,10 @@
 0	307	1677833222378607620	CMakeFiles/sd_sortari.dir/ArrayGenerator.cpp.o	fc4d4fe60a81598f
 307	345	1677833222415608105	sd_sortari	a95412821e0ad33e
 0	278	1677833204745376165	CMakeFiles/sd_sortari.dir/main.cpp.o	e72073202447dca2
+0	268	1677834243241048663	CMakeFiles/sd_sortari.dir/main.cpp.o	e72073202447dca2
+0	314	1677834243287049260	CMakeFiles/sd_sortari.dir/ArrayGenerator.cpp.o	fc4d4fe60a81598f
+1	120	1677834270740405916	CMakeFiles/sd_sortari.dir/ArraySorter.cpp.o	5767a8b7d35a3707
+120	159	1677834270778406409	sd_sortari	7d4c833c04f88a78
+1	132	1677834373724743829	CMakeFiles/sd_sortari.dir/ArraySorter.cpp.o	5767a8b7d35a3707
+1	280	1677834373872745751	CMakeFiles/sd_sortari.dir/main.cpp.o	e72073202447dca2
+280	328	1677834373918746349	sd_sortari	7d4c833c04f88a78
