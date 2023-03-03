@@ -10,8 +10,25 @@ void ArraySorter::mergeSort(std::vector<long long int> &v) {
     ArraySorter::mergeSort(v, 0, v.size()-1);
 }
 
-void ArraySorter::radixSort(std::vector<long long int> &v) {
+void ArraySorter::radixSort(std::vector<long long int> &v, const int logBase) {
+    long long divider = 1;
+    long long base = 1 << logBase;
 
+    while(true) {
+        std::vector <long long> bucket[base];
+        for(long long i : v) {
+            bucket[(i / divider) % base].push_back(i);
+        }
+        if(bucket[0].size() == v.size())
+            return;
+        v.clear();
+        for(int i = 0; i < base; i ++) {
+            for(long long value: bucket[i]) {
+                v.push_back(value);
+            }
+        }
+        divider *= base;
+    }
 }
 
 void ArraySorter::shellSort(std::vector<long long int> &v) {

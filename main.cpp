@@ -6,7 +6,7 @@ int main() {
 
 
     std::vector<long long> v = ArrayGenerator::numberArray(1000, 0, 1000);
-    ArraySorter::mergeSort(v);
+    ArraySorter::radixSort(v);
     ArrayGenerator::printArray(v);
 
 
