@@ -20,6 +20,8 @@ public:
 
     static void shellSort(std::vector <long long> &v);
 
+    static void heapSort(std::vector <long long> &v);
+
     static bool checkIfSorted(const std::vector <long long> &v);
 };
 

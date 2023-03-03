@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include "ArraySorter.h"
+#include "RandomizedMinHeap.h"
 
 
 
@@ -87,4 +88,15 @@ bool ArraySorter::checkIfSorted(const std::vector<long long int> &v) {
             return false;
     }
     return true;
+}
+
+void ArraySorter::heapSort(std::vector<long long int> &v) {
+    RandomizedMinHeap heap;
+    for(int i = 0; i < v.size(); i ++) {
+        heap.addValue(v[i]);
+    }
+    v.clear();
+    while(!heap.isEmpty()) {
+        v.push_back(heap.removeMinValue());
+    }
 }

@@ -67,6 +67,12 @@ build CMakeFiles/sd_sortari.dir/ArraySorter.cpp.o: CXX_COMPILER__sd_sortari_Debu
   OBJECT_DIR = CMakeFiles/sd_sortari.dir
   OBJECT_FILE_DIR = CMakeFiles/sd_sortari.dir
 
+build CMakeFiles/sd_sortari.dir/RandomizedMinHeap.cpp.o: CXX_COMPILER__sd_sortari_Debug /var/home/eduarddumitrescul/repos/sd_sortari/RandomizedMinHeap.cpp || cmake_object_order_depends_target_sd_sortari
+  DEP_FILE = CMakeFiles/sd_sortari.dir/RandomizedMinHeap.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/sd_sortari.dir
+  OBJECT_FILE_DIR = CMakeFiles/sd_sortari.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target sd_sortari
@@ -75,7 +81,7 @@ build CMakeFiles/sd_sortari.dir/ArraySorter.cpp.o: CXX_COMPILER__sd_sortari_Debu
 #############################################
 # Link the executable sd_sortari
 
-build sd_sortari: CXX_EXECUTABLE_LINKER__sd_sortari_Debug CMakeFiles/sd_sortari.dir/main.cpp.o CMakeFiles/sd_sortari.dir/ArrayGenerator.cpp.o CMakeFiles/sd_sortari.dir/ArraySorter.cpp.o
+build sd_sortari: CXX_EXECUTABLE_LINKER__sd_sortari_Debug CMakeFiles/sd_sortari.dir/main.cpp.o CMakeFiles/sd_sortari.dir/ArrayGenerator.cpp.o CMakeFiles/sd_sortari.dir/ArraySorter.cpp.o CMakeFiles/sd_sortari.dir/RandomizedMinHeap.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/sd_sortari.dir
   POST_BUILD = :
