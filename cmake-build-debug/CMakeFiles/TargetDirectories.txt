@@ -1,0 +1,3 @@
+/var/home/eduarddumitrescul/repos/sd_sortari/cmake-build-debug/CMakeFiles/sd_sortari.dir
+/var/home/eduarddumitrescul/repos/sd_sortari/cmake-build-debug/CMakeFiles/edit_cache.dir
+/var/home/eduarddumitrescul/repos/sd_sortari/cmake-build-debug/CMakeFiles/rebuild_cache.dir
