@@ -9,6 +9,8 @@
 #include <vector>
 
 class ArraySorter {
+    static const int ARRAY_LIMIT = 100000000;
+
     static void mergeSort(std::vector <long long> &v, int left, int right);
 
     static void shellSort(std::vector <long long> &v, int gap);
@@ -21,6 +23,8 @@ public:
     static void shellSort(std::vector <long long> &v);
 
     static void heapSort(std::vector <long long> &v);
+
+    static bool countSort(std::vector <long long> &v);
 
     static bool checkIfSorted(const std::vector <long long> &v);
 };

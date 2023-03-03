@@ -3,9 +3,11 @@
 //
 
 #include <cmath>
+#include <unordered_map>
 #include "ArraySorter.h"
 #include "RandomizedMinHeap.h"
-
+#include <climits>
+#include <cstring>
 
 
 void ArraySorter::mergeSort(std::vector<long long int> &v) {
@@ -99,4 +101,26 @@ void ArraySorter::heapSort(std::vector<long long int> &v) {
     while(!heap.isEmpty()) {
         v.push_back(heap.removeMinValue());
     }
+}
+
+bool ArraySorter::countSort(std::vector<long long int> &v) {
+    long long max = LONG_LONG_MIN, min = LONG_LONG_MAX;
+    for(long long i: v) {
+        max = std::max(max, i);
+        min = std::min(min, i);
+    }
+    if(max - min + 1 > ArraySorter::ARRAY_LIMIT)
+        return false;
+
+    std::vector <int> count(max-min+1, 0);
+    for(long long i: v) {
+        count[i-min] ++;
+    }
+    int j = 0;
+    for(int i = 0; i <= max - min; i ++) {
+        while(count[i] --) {
+            v[j++] = i;
+        }
+    }
+    return true;
 }
