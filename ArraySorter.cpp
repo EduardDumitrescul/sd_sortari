@@ -11,13 +11,14 @@
 #include <iostream>
 
 
-void ArraySorter::mergeSort(std::vector<long long int> &v) {
+bool ArraySorter::mergeSort(std::vector<long long int> &v) {
     ArraySorter::mergeSort(v, 0, v.size()-1);
+    return ArraySorter::checkIfSorted(v);
 }
 
-void ArraySorter::radixSort(std::vector<long long int> &v, const int logBase) {
+bool ArraySorter::radixSort(std::vector<long long int> &v, const int logBase) {
     long long divider = 1;
-    long long base = 1 << logBase;
+    long long base = 1LL << logBase;
 
     long long min = LONG_LONG_MAX;
     for(long long i: v)
@@ -32,7 +33,7 @@ void ArraySorter::radixSort(std::vector<long long int> &v, const int logBase) {
             bucket[(i / divider) % base].push_back(i);
         }
         if(bucket[0].size() == v.size())
-            return;
+            break;
         v.clear();
         for(int i = 0; i < base; i ++) {
             for(long long value: bucket[i]) {
@@ -59,10 +60,11 @@ void ArraySorter::shellSort(std::vector<long long int> &v, int gap) {
 }
 
 
-void ArraySorter::shellSort(std::vector<long long int> &v) {
+bool ArraySorter::shellSort(std::vector<long long int> &v) {
     for(int k = log2(v.size() + 1); k >= 1; k --) {
         ArraySorter::shellSort(v, (1<<k)-1);
     }
+    return ArraySorter::checkIfSorted(v);
 }
 
 void ArraySorter::mergeSort(std::vector<long long int> &v, const int left, const int right) {
@@ -104,7 +106,7 @@ bool ArraySorter::checkIfSorted(const std::vector<long long int> &v) {
     return true;
 }
 
-void ArraySorter::heapSort(std::vector<long long int> &v) {
+bool ArraySorter::heapSort(std::vector<long long int> &v) {
     RandomizedMinHeap heap;
     for(int i = 0; i < v.size(); i ++) {
         heap.addValue(v[i]);
@@ -113,6 +115,7 @@ void ArraySorter::heapSort(std::vector<long long int> &v) {
     while(!heap.isEmpty()) {
         v.push_back(heap.removeMinValue());
     }
+    return ArraySorter::checkIfSorted(v);
 }
 
 bool ArraySorter::countSort(std::vector<long long int> &v) {
@@ -122,7 +125,6 @@ bool ArraySorter::countSort(std::vector<long long int> &v) {
             max = std::max(max, i);
             min = std::min(min, i);
         }
-        std::cout << max - min << '\n';
         std::vector <int> count(max-min+1, 0);
         for(long long i: v) {
             count[i-min] ++;

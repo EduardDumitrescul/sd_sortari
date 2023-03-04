@@ -14,13 +14,13 @@ class ArraySorter {
     static void shellSort(std::vector <long long> &v, int gap);
 public:
 
-    static void mergeSort(std::vector <long long> &v);
+    static bool mergeSort(std::vector <long long> &v);
 
-    static void radixSort(std::vector <long long> &v, int logBase = 8);
+    static bool radixSort(std::vector <long long> &v, int logBase = 8);
 
-    static void shellSort(std::vector <long long> &v);
+    static bool shellSort(std::vector <long long> &v);
 
-    static void heapSort(std::vector <long long> &v);
+    static bool heapSort(std::vector <long long> &v);
 
     static bool countSort(std::vector <long long> &v);
 
