@@ -7,36 +7,35 @@
 #include "ArrayGenerator.h"
 #include "ArraySorter.h"
 
-int main() {
-
+void testAllSortingMethods() {
     std::map <long long, std::vector<long long>> testReq;
     testReq[1e2] = {
-        static_cast<long long>(1e2),
-        static_cast<long long>(1e6),
-        static_cast<long long>(1e10),
-        static_cast<long long>(1e14),
-        static_cast<long long>(5e17),
+            static_cast<long long>(1e2),
+            static_cast<long long>(1e6),
+            static_cast<long long>(1e10),
+            static_cast<long long>(1e14),
+            static_cast<long long>(5e17),
     };
     testReq[1e4] = {
-        static_cast<long long>(1e2),
-        static_cast<long long>(1e6),
-        static_cast<long long>(1e10),
-        static_cast<long long>(1e14),
-        static_cast<long long>(5e17),
+            static_cast<long long>(1e2),
+            static_cast<long long>(1e6),
+            static_cast<long long>(1e10),
+            static_cast<long long>(1e14),
+            static_cast<long long>(5e17),
     };
     testReq[1e6] = {
-        static_cast<long long>(1e2),
-        static_cast<long long>(1e6),
-        static_cast<long long>(1e10),
-        static_cast<long long>(1e14),
-        static_cast<long long>(5e17),
+            static_cast<long long>(1e2),
+            static_cast<long long>(1e6),
+            static_cast<long long>(1e10),
+            static_cast<long long>(1e14),
+            static_cast<long long>(5e17),
     };
     testReq[1e7] = {
-        static_cast<long long>(1e2),
-        static_cast<long long>(1e6),
-        static_cast<long long>(1e10),
-        static_cast<long long>(1e14),
-        static_cast<long long>(5e17),
+            static_cast<long long>(1e2),
+            static_cast<long long>(1e6),
+            static_cast<long long>(1e10),
+            static_cast<long long>(1e14),
+            static_cast<long long>(5e17),
     };
 //    testReq[1e8] = {
 //        static_cast<long long>(1e2),
@@ -119,7 +118,11 @@ int main() {
             fout << '\n';
         }
     }
+}
 
+int main() {
+
+    testAllSortingMethods();
 
     return 0;
 }
