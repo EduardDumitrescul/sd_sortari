@@ -38,14 +38,14 @@ int main() {
         static_cast<long long>(1e14),
         static_cast<long long>(5e17),
     };
-    testReq[1e8] = {
-        static_cast<long long>(1e2),
-        static_cast<long long>(1e5),
-        static_cast<long long>(1e8),
-        static_cast<long long>(1e11),
-        static_cast<long long>(1e14),
-        static_cast<long long>(5e17),
-    };
+//    testReq[1e8] = {
+//        static_cast<long long>(1e2),
+//        static_cast<long long>(1e5),
+//        static_cast<long long>(1e8),
+//        static_cast<long long>(1e11),
+//        static_cast<long long>(1e14),
+//        static_cast<long long>(5e17),
+//    };
 
     std::ofstream fout;
     fout.open("statistics.txt");
