@@ -9,8 +9,6 @@
 #include <vector>
 
 class ArraySorter {
-    static const int ARRAY_LIMIT = 100000000;
-
     static void mergeSort(std::vector <long long> &v, int left, int right);
 
     static void shellSort(std::vector <long long> &v, int gap);

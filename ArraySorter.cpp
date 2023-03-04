@@ -8,6 +8,7 @@
 #include "RandomizedMinHeap.h"
 #include <climits>
 #include <cstring>
+#include <iostream>
 
 
 void ArraySorter::mergeSort(std::vector<long long int> &v) {
@@ -104,23 +105,28 @@ void ArraySorter::heapSort(std::vector<long long int> &v) {
 }
 
 bool ArraySorter::countSort(std::vector<long long int> &v) {
-    long long max = LONG_LONG_MIN, min = LONG_LONG_MAX;
-    for(long long i: v) {
-        max = std::max(max, i);
-        min = std::min(min, i);
-    }
-    if(max - min + 1 > ArraySorter::ARRAY_LIMIT)
-        return false;
-
-    std::vector <int> count(max-min+1, 0);
-    for(long long i: v) {
-        count[i-min] ++;
-    }
-    int j = 0;
-    for(int i = 0; i <= max - min; i ++) {
-        while(count[i] --) {
-            v[j++] = i;
+    try {
+        long long max = LONG_LONG_MIN, min = LONG_LONG_MAX;
+        for(long long i: v) {
+            max = std::max(max, i);
+            min = std::min(min, i);
         }
+        std::cout << max - min << '\n';
+        std::vector <int> count(max-min+1, 0);
+        for(long long i: v) {
+            count[i-min] ++;
+        }
+        int j = 0;
+        for(int i = 0; i <= max - min; i ++) {
+            while(count[i] --) {
+                v[j++] = i;
+            }
+        }
+        return true;
     }
-    return true;
+    catch (...){
+        return false;
+    }
+
+
 }

@@ -4,12 +4,10 @@
 
 int main() {
 
-
-    std::vector<long long> v = ArrayGenerator::numberArray(1000, 0, 100000000);
-    ArraySorter::countSort(v);
+    std::vector<long long> v = ArrayGenerator::numberArray(10000000, 0, 1000000000);
+    ArraySorter::mergeSort(v);
     std::cout << ArraySorter::checkIfSorted(v) << '\n';
-    ArrayGenerator::printArray(v);
-
+    ArrayGenerator::printArray(v, "output.txt");
 
 
     return 0;
