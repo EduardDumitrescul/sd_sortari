@@ -11,7 +11,7 @@
 
 class ArrayGenerator {
 public:
-    static std::vector<long long> numberArray(const int &length, const long long &minValue = -1000000000000000000, const long long &maxValue = 1000000000000000000);
+    static std::vector<long long> numberArray(const long long &length, const long long &minValue = -1000000000000000000, const long long &maxValue = 1000000000000000000);
 
     static void printArray(const std::vector <long long> &v, const std::string& filename = "");
 };

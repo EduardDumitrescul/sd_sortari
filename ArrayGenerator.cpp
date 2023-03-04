@@ -9,7 +9,7 @@
 #include <random>
 #include "ArrayGenerator.h"
 
-std::vector<long long>  ArrayGenerator::numberArray(const int &length, const long long &minValue, const long long &maxValue) {
+std::vector<long long>  ArrayGenerator::numberArray(const long long &length, const long long &minValue, const long long &maxValue) {
     std::vector <long long> v;
     std::random_device rd;     //Get a random seed from the OS entropy device, or whatever
     std::mt19937_64 eng(rd()); //Use the 64-bit Mersenne Twister 19937 generator
