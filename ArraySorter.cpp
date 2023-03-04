@@ -19,7 +19,14 @@ void ArraySorter::radixSort(std::vector<long long int> &v, const int logBase) {
     long long divider = 1;
     long long base = 1 << logBase;
 
-    while(true) {
+    long long min = LONG_LONG_MAX;
+    for(long long i: v)
+        min = std::min(min, i);
+    for(long long &i: v) {
+        i -= min;
+    }
+
+    while(divider > 0) {
         std::vector <long long> bucket[base];
         for(long long i : v) {
             bucket[(i / divider) % base].push_back(i);
@@ -34,6 +41,10 @@ void ArraySorter::radixSort(std::vector<long long int> &v, const int logBase) {
         }
         divider *= base;
     }
+    for(long long &i: v) {
+        i += min;
+    }
+    return ArraySorter::checkIfSorted(v);
 }
 
 void ArraySorter::shellSort(std::vector<long long int> &v, int gap) {
