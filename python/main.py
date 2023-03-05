@@ -37,7 +37,7 @@ def plotSeparately(perf):
             y = [v[1] for v in stats if v[0] > 1e5]
             plt.plot(np.array(x), np.array(y), label="maxVal=" + str(max))
 
-        plt.title = sort_method[0:-4]
+        plt.title(sort_method[0:-4])
         plt.legend()
         plt.savefig("../stats/" + sort_method[0:-4] + ".png")
         plt.close()

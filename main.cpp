@@ -7,13 +7,15 @@
 #include "ArrayGenerator.h"
 #include "ArraySorter.h"
 
-const long long MAX_SIZE = 200000;
+const long long MAX_SIZE = 10000000;
+const double MULTIPLIER = 1.2;
 
 void testCountSort(std::vector <long long> maxAbsValue) {
     std::ofstream fout;
     fout.open("../stats/count_sort.txt");
     for(auto max: maxAbsValue) {
-        for (long long size = 100; size <= MAX_SIZE; size *= 2) {
+        for (long long size = 100; size <= MAX_SIZE; size *= MULTIPLIER) {
+            std::cout << "count " << max << ' ' << size << '\n';
             std::vector<long long> v = ArrayGenerator::numberArray(size, -max, max);
             auto start = std::chrono::high_resolution_clock::now();
             bool ok = ArraySorter::countSort(v);
@@ -28,7 +30,8 @@ void testShellSort(std::vector <long long> maxAbsValue) {
     std::ofstream fout;
     fout.open("../stats/shell_sort.txt");
     for(auto max: maxAbsValue) {
-        for (long long size = 100; size <= MAX_SIZE; size *= 2) {
+        for (long long size = 100; size <= MAX_SIZE; size *= MULTIPLIER) {
+            std::cout << "shell " << max << ' ' << size << '\n';
             std::vector<long long> v = ArrayGenerator::numberArray(size, -max, max);
             auto start = std::chrono::high_resolution_clock::now();
             bool ok = ArraySorter::shellSort(v);
@@ -43,7 +46,8 @@ void testHeapSort(std::vector <long long> maxAbsValue) {
     std::ofstream fout;
     fout.open("../stats/heap_sort.txt");
     for(auto max: maxAbsValue) {
-        for (long long size = 100; size <= MAX_SIZE; size *= 2) {
+        for (long long size = 100; size <= MAX_SIZE; size *= MULTIPLIER) {
+            std::cout << "heap " << max << ' ' << size << '\n';
             std::vector<long long> v = ArrayGenerator::numberArray(size, -max, max);
             auto start = std::chrono::high_resolution_clock::now();
             bool ok = ArraySorter::heapSort(v);
@@ -58,7 +62,8 @@ void testRadixSort(std::vector <long long> maxAbsValue) {
     std::ofstream fout;
     fout.open("../stats/radix_sort.txt");
     for(auto max: maxAbsValue) {
-        for (long long size = 100; size <= MAX_SIZE; size *= 2) {
+        for (long long size = 100; size <= MAX_SIZE; size *= MULTIPLIER) {
+            std::cout << "radix " << max << ' ' << size << '\n';
             std::vector<long long> v = ArrayGenerator::numberArray(size, -max, max);
             auto start = std::chrono::high_resolution_clock::now();
             bool ok = ArraySorter::radixSort(v);
@@ -73,7 +78,8 @@ void testMergeSort(std::vector <long long> maxAbsValue) {
     std::ofstream fout;
     fout.open("../stats/merge_sort.txt");
     for(auto max: maxAbsValue) {
-        for (long long size = 100; size <= MAX_SIZE; size *= 2) {
+        for (long long size = 100; size <= MAX_SIZE; size *= MULTIPLIER) {
+            std::cout << "merge " << max << ' ' << size << '\n';
             std::vector<long long> v = ArrayGenerator::numberArray(size, -max, max);
             auto start = std::chrono::high_resolution_clock::now();
             bool ok = ArraySorter::mergeSort(v);
@@ -88,7 +94,8 @@ void testStandardSort(std::vector <long long> maxAbsValue) {
     std::ofstream fout;
     fout.open("../stats/standard_sort.txt");
     for(auto max: maxAbsValue) {
-        for(long long size = 100; size <= MAX_SIZE; size *= 2) {
+        for(long long size = 100; size <= MAX_SIZE; size *= MULTIPLIER) {
+            std::cout << "stadard " << max << ' ' << size << '\n';
             std::vector <long long> v = ArrayGenerator::numberArray(size, -max, max);
             auto start = std::chrono::high_resolution_clock::now();
             std::sort(v.begin(), v.end());
@@ -103,9 +110,9 @@ void testStandardSort(std::vector <long long> maxAbsValue) {
 void testAllIndividually() {
     std::vector <long long> maxAbsValue = {10000, static_cast<long long>(1e8), static_cast<long long>(1e12), static_cast<long long>(1e16)};
 
-    testCountSort(maxAbsValue);
-    testMergeSort(maxAbsValue);
-    testShellSort(maxAbsValue);
+//    testCountSort(maxAbsValue);
+//    testMergeSort(maxAbsValue);
+//    testShellSort(maxAbsValue);
     testHeapSort(maxAbsValue);
     testRadixSort(maxAbsValue);
     testStandardSort(maxAbsValue);
