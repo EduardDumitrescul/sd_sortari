@@ -7,7 +7,7 @@
 | Shell Sort | O(n * log<sub>2</sub>n) | O(1) | Using Hibbard(1963) gap sequences 2<sup>k</sup>-1 |
 | Merge Sort | O(n * log<sub>2</sub>n) | O(n) ||
 | Heap Sort | O(n * log<sub>2</sub>n) | O(n) ||
-| Radix Sort | O(n * log<sub>b</sub>n) | O(n) | b = chose based (recommended 2<sup>8</sup> or 2<sup>16</sup> |
+| Radix Sort | O(n * log<sub>b</sub>n) | O(n) | b = chosen based (recommended 2<sup>8</sup> or 2<sup>16</sup>) |
 | C++ std::sort | O(n * log<sub>2</sub>n) | | |
 
 All the algorithms have been implemented in C++.
