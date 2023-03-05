@@ -37,6 +37,8 @@ def plotSeparately(perf):
             y = [v[1] for v in stats if v[0] > 1e5]
             plt.plot(np.array(x), np.array(y), label="maxVal=" + str(max))
 
+        plt.ylabel("microseconds")
+        plt.xlabel("array size")
         plt.title(sort_method[0:-4])
         plt.legend()
         plt.savefig("../stats/" + sort_method[0:-4] + ".png")
@@ -44,16 +46,15 @@ def plotSeparately(perf):
 
 
 def plotCombined(perf):
-    fig, axs = plt.subplots(2, 2, figsize=(12, 8))
-    axs[0, 0].set_title("Max Abs Value = 10^4")
-    axs[0, 1].set_title("Max Abs Value = 10^8")
-    axs[1, 0].set_title("Max Abs Value = 10^12")
-    axs[1, 1].set_title("Max Abs Value = 10^16")
+    fig, axs = plt.subplots(1, 4, figsize=(20, 6))
+    axs[0].set_title("Max Abs Value = 10^4")
+    axs[1].set_title("Max Abs Value = 10^8")
+    axs[2].set_title("Max Abs Value = 10^12")
+    axs[3].set_title("Max Abs Value = 10^16")
 
-    for i in axs:
-        for j in i:
-            j.set_xscale('log')
-            j.set_yscale('linear')
+    for j in axs:
+        j.set_xscale('log')
+        j.set_yscale('linear')
 
     for sort_method, stats_dict in perf.items():
 
@@ -61,17 +62,19 @@ def plotCombined(perf):
             x = [v[0] for v in stats if v[0] > 1e5]
             y = [v[1] for v in stats if v[0] > 1e5]
             if max == 10000:
-                axs[0, 0].plot(np.array(x), np.array(y), label=sort_method[0:-4])
+                axs[0].plot(np.array(x), np.array(y), label=sort_method[0:-4])
             elif max == 1e8:
-                axs[0, 1].plot(np.array(x), np.array(y), label=sort_method[0:-4])
+                axs[1].plot(np.array(x), np.array(y), label=sort_method[0:-4])
             elif max == 1e12:
-                axs[1, 0].plot(np.array(x), np.array(y), label=sort_method[0:-4])
+                axs[2].plot(np.array(x), np.array(y), label=sort_method[0:-4])
             elif max == 1e16:
-                axs[1, 1].plot(np.array(x), np.array(y), label=sort_method[0:-4])
+                axs[3].plot(np.array(x), np.array(y), label=sort_method[0:-4])
 
-    for i in axs:
-        for j in i:
-            j.legend()
+    for j in axs:
+        j.legend()
+        j.set_ylabel("microseconds")
+        j.set_xlabel("array size")
+        j.sharey(axs[0])
 
     fig.tight_layout()
     plt.savefig("../stats/combined.png")
