@@ -110,9 +110,9 @@ void testStandardSort(std::vector <long long> maxAbsValue) {
 void testAllIndividually() {
     std::vector <long long> maxAbsValue = {10000, static_cast<long long>(1e8), static_cast<long long>(1e12), static_cast<long long>(1e16)};
 
-//    testCountSort(maxAbsValue);
-//    testMergeSort(maxAbsValue);
-//    testShellSort(maxAbsValue);
+    testCountSort(maxAbsValue);
+    testMergeSort(maxAbsValue);
+    testShellSort(maxAbsValue);
     testHeapSort(maxAbsValue);
     testRadixSort(maxAbsValue);
     testStandardSort(maxAbsValue);
