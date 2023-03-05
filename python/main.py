@@ -1,70 +1,86 @@
+import os
+
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.pyplot import figure
 
-def getPerfDict():
-    performance = dict()
 
-    with open("../cmake-build-debug/statistics.txt") as file:
-        lines = file.readlines()
-        i = 0
-        while i < len(lines):
-            req = lines[i].split()
-            if req == "":
-                break
-            size = int(req[0].split('=')[1])
-            maxValue = int(req[3].split('=')[1])
+def readStats():
+    perf = dict()
+    for filename in os.listdir('../stats'):
+        if filename[-4:] == ".txt":
+            with open("../stats/" + filename) as file:
+                perf[filename] = dict()
+                for line in file:
+                    temp = line.split()
+                    max = int(temp[0])
+                    status = temp[1]
+                    size = int(temp[2])
+                    time = int(temp[3])
 
-            for j in range(6):
-                i += 1
-                test = lines[i]
-                sortMethod = test.split()[0] + " " + test.split()[1]
-                status = test.split()[2]
-                time = int(test.split()[3])
+                    if status != "OK":
+                        continue
+                    if max not in perf[filename]:
+                        perf[filename][max] = []
 
-                print(sortMethod, status, time)
+                    perf[filename][max].append(tuple([size, time]))
 
-                if sortMethod not in performance.keys():
-                    performance[sortMethod] = []
-
-                performance[sortMethod].append(tuple([size, maxValue, time]))
-
-            i += 2
-
-    return performance
+    return perf
 
 
 def plotSeparately(perf):
-    temp = dict()
-    for key in perf.keys():
-        temp[key] = dict()
-
-    for key, value in perf.items():
-        for value2 in value:
-            temp[key][value2[1]] = []
-
-    for key, value in perf.items():
-        for value2 in value:
-            temp[key][value2[1]].append(tuple([value2[0], value2[2]]))
-
-    i = 0
-
-    for key, d in temp.items():
+    for sort_method, stats_dict in perf.items():
         plt.xscale('log')
         plt.yscale('linear')
-        print(key, d)
-        j = 0
-        for key2, value in d.items():
-            x = [v[0] for v in value]
-            y = [v[1] for v in value]
-            plt.plot(np.array(x), np.array(y))
-            j += 1
+        for max, stats in stats_dict.items():
+            x = [v[0] for v in stats if v[0] > 1e5]
+            y = [v[1] for v in stats if v[0] > 1e5]
+            plt.plot(np.array(x), np.array(y), label="maxVal=" + str(max))
 
-        plt.savefig(key + ".png")
+        plt.title = sort_method[0:-4]
+        plt.legend()
+        plt.savefig("../stats/" + sort_method[0:-4] + ".png")
         plt.close()
-        i += 1
 
 
+def plotCombined(perf):
+    fig, axs = plt.subplots(2, 2, figsize=(12, 8))
+    axs[0, 0].set_title("Max Abs Value = 10^4")
+    axs[0, 1].set_title("Max Abs Value = 10^8")
+    axs[1, 0].set_title("Max Abs Value = 10^12")
+    axs[1, 1].set_title("Max Abs Value = 10^16")
 
-performance = getPerfDict()
+    for i in axs:
+        for j in i:
+            j.set_xscale('log')
+            j.set_yscale('linear')
+
+    for sort_method, stats_dict in perf.items():
+
+        for max, stats in stats_dict.items():
+            x = [v[0] for v in stats if v[0] > 1e5]
+            y = [v[1] for v in stats if v[0] > 1e5]
+            if max == 10000:
+                axs[0, 0].plot(np.array(x), np.array(y), label=sort_method[0:-4])
+            elif max == 1e8:
+                axs[0, 1].plot(np.array(x), np.array(y), label=sort_method[0:-4])
+            elif max == 1e12:
+                axs[1, 0].plot(np.array(x), np.array(y), label=sort_method[0:-4])
+            elif max == 1e16:
+                axs[1, 1].plot(np.array(x), np.array(y), label=sort_method[0:-4])
+
+    for i in axs:
+        for j in i:
+            j.legend()
+
+    fig.tight_layout()
+    plt.savefig("../stats/combined.png")
+    plt.close()
+
+
+performance = readStats()
 plotSeparately(performance)
+plotCombined(performance)
+
+print(performance.items())
+
