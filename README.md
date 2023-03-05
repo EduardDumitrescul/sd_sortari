@@ -13,8 +13,16 @@
 All the algorithms have been implemented in C++.
 The plots have been created using Python Matplotlib.
 
-
-
+### Observations
+- most effiecient for small numbers: Count Sort
+  - maximum absolute value = 10<sup>4</sup> , array size = 9603984 => 203295 microseconds (13x faster than std::sort 2771677)
+  - maximum absolute value = 10<sup>8</sup> , array size = 9603984 => 395496 microseconds (8x faster std::sort 3206191)
+  - failing for bigger numbers due to space usage
+- most effiecient for large numbers: Radix Sort (using base 256)
+  - maximum absolute value = 10<sup>12</sup> , array size = 9603984 => 2905962 microseconds (vs std::sort 3217299)
+  - maximum absolute value = 10<sup>16</sup> , array size = 9603984 => 3195253 microseconds (vs std::sort 3201822)
+  - slight improvement over std::sort
+ 
 ### Plots
 **Combined Comparison** 
 
